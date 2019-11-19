@@ -3,7 +3,7 @@ const express = require('express');
 const response = require('../../network/response');
 const controller = require('./controller');
 const Router = express.Router();
-// const SETUP = require('../../../config');
+// const SETUP = require('../../config');
 // const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.mailgun_api_key, domain: SETUP.CONFIG.domain});
 
 Router.post('/', (req, res) => {
