@@ -4,7 +4,7 @@ import UserDropDown from './UserDropDown';
 import UserProvider from '../../contexts/UserProvider';
 import {data} from '../../data';
 import _ from 'lodash';
-import PassportLogo from '../../res/passport-1.png';
+import PassportLogo from '../../res/passport-1.svg';
 import logo from '../../res/logo.svg';
 
 const MenuBar = () => {
@@ -13,16 +13,15 @@ const MenuBar = () => {
 
     return (
         <div className='menu-bar'>
-            <Link className='btn menu-btn' to='/' title='Home'>
+            <Link className='btn menu-btn noHover logobox' to='/' title='Home'>
                 <img
                     src={logo}
                     alt='logo'
-                    style={{ height: 19 }}
                 />
             </Link>
             {
                 !_.isEmpty(userData) &&
-                <div className='btn menu-btn noHover' title={`${loginType.name} data`} style={{ float: 'right' }}>
+                <div className='btn menu-btn noHover' title={`${loginType.name} data`} style={{ float: 'right', paddingTop: 0, paddingBottom: 0, position: 'relative', top: '50%', transform: 'translateY(-50%)' }}>
                     <div className='app-icon-container'>
                         <img
                             className='btn-icon'
@@ -35,11 +34,10 @@ const MenuBar = () => {
 
             {
                 _.isEmpty(userData) &&
-                <div className='btn menu-btn noHover' title='Home' style={{ float: 'right' }}>
+                <div className='btn menu-btn noHover' title='Home' style={{ float: 'right', paddingTop: 0, paddingBottom: 0, position: 'relative', top: '50%', transform: 'translateY(-50%)' }}>
                     <img
                         src={PassportLogo}
                         alt='passport.js logo'
-                        style={{ height: 19 }}
                     />
                 </div>
             }

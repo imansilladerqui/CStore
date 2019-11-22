@@ -63,10 +63,11 @@ button {
 
 .menu-bar {
     overflow: hidden;
-    background-color: var(--primary-red);
+    background-color: #312D5C;
     box-shadow: -5px -7px 15px 1px rgba(0,0,0,0.8);
-    padding-left: 20%;
-    padding-right: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 107px;
 }
 
 .disabled {
@@ -259,11 +260,11 @@ input::-webkit-inner-spin-button {
 
 
 .homepage {
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
-.background-2 {
-    background: url(../res/background-1.jpg);
+.backgroundHome {
+    background: #52507C;
     background-size: 100%;
 }
 
@@ -286,7 +287,9 @@ input::-webkit-inner-spin-button {
 }
 
 .card-container {
-    padding: 50px;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin-bottom: 20px;
 }
 
 #formatted-numberformat-input {
@@ -309,14 +312,14 @@ input::-webkit-inner-spin-button {
 .money-input label {
     right: 0 !important;
     text-align: right;
-    color: #343537;
+    color: #FFFFFF !important;
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 0.29px;
-    line-height: 10px;
+    line-height: 15px;
 }
 .money-input input {
-    color: #000;
+    color: #FFFFFF;
     font-size: 30px;
     font-weight: 500;
     letter-spacing: 0.71px;
@@ -325,11 +328,15 @@ input::-webkit-inner-spin-button {
     padding-bottom: 0;
 }
 
+#money-input-bitcoin {
+    text-indent: 4px;
+}
+
 .card-container form button {
     font-size: 15px;
     font-weight: 300;
     letter-spacing: 0.29px;
-    line-height: 10px;
+    line-height: 15px;
     border-radius: 22px;
     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.05);
     background-color: #4A90E2;
@@ -341,26 +348,40 @@ input::-webkit-inner-spin-button {
     margin-top: 25px;
 }
 
-.paddlock img {
-    width:15px;
-    height: auto;
-    margin-right: 5px;
-}
-
-.ssl img{
-    width:auto;
-    height: 22px;
-}
-
 .noHover{
     pointer-events: none;
 }
 
-.square {
-    position: absolute;
-    width: 60%;
-    height: 60%;
-    left: -20px;
-    top: -20px;
+.logobox {
+    position: relative;
+    height: auto;
+    min-height: 107px;
+    /* width: 50%; */
+    text-align: center;
+}
 
-  }
+.logobox img {
+    height: auto;
+    width: 100%;
+}
+
+.money-icon.fas.fa-chevron-down {
+    margin-left: 4px;
+}
+
+@media(min-width:992px){
+    .logobox {
+        position: absolute;
+        height: auto;
+        width:40%;
+        max-width: 750px;
+    }
+
+    .money-icon.fas.fa-chevron-down {
+        margin-left: 10px;
+    }
+}
+
+label + .MuiInput-formControl {
+    margin-top: 24px !important;
+}

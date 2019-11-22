@@ -5,7 +5,6 @@ const User = require('../auth/model');
 User.hasMany(Operation, {foreignKey: 'id', targetKey: 'userId'} );
 Operation.belongsTo(User, {foreignKey: 'id'});
 
-
 function addOperation(operationType, btcValue, btcQty, arsQty, userId) {
     
     const operation = {

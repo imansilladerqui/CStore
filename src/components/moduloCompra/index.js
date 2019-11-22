@@ -9,93 +9,88 @@ import NumberFormat from 'react-number-format';
 import React, {useContext, useState, useEffect} from 'react';
 import UserProvider from "../../contexts/UserProvider";
 
-
-
-
-
 // IMAGES
 
-import arsLogo from "../../res/ars.png";
-import bitcoinLogo from "../../res/bitcoin.png";
-import padlock from "../../res/padlock.png";
-import ssl from "../../res/ssl.png";
+import bitcoinLogo from '../../res/bitcoinLogo.svg'
 
 //FETCH HOOK
 
 import {useGetHttpRequest} from '../../contexts/hooks/getHttpRequest';
 import {PostHttpRequest} from '../../contexts/hooks/postHttpRequest';
 
+
 const style = {
-  button: {marginTop: 20},
+  button: {
+    marginTop: 20,
+    background: '#FFFFFF',
+    color: '#312D5C',
+    borderRadius: 0
+  },
   input: {textAlign: "right"},
   moduloCompraTitle: {
     fontSize: '25px',
-    color: '#212B36',
+    color: '#FFFFFF',
     fontWeight: 600,
     lineHeight: '17px',
     textAlign: 'center',
-    marginBottom: '15px'
+    paddingBottom: '15px'
   },
   moduloCompraSubtitle: {
-    color: '#637381',
+    color: '#FFFFFF',
     fontSize: '15px',
     fontWeight: 300,
-    lineHeight: '11px',
+    lineHeight: '15px',
     textAlign: 'center',
-    marginBottom: '50px',
-    marginTop: '0'
+    paddingBottom: '30px',
+    paddingTop: '0'
   },
   currencyBox: {
-    paddingLeft: '20px'
+    paddingLeft: '10px'
   },
   currencyTitle: {
-    color: '#343537',
+    color: '#FFFFFF',
     fontSize: '30px',
     fontWeight: 400,
     letterSpacing: '0.71px',
     lineHeight: '24px',
     textAlign: 'left',
-    marginTop:'0',
-    marginBottom: '10px'
+    paddingTop:'0',
+    paddingBottom: '10px'
   },
   currencySubtitle: {
-    color: '#343537',
+    color: '#FFFFFF',
     fontSize: '15px',
     fontWeight: 300,
     letterSpacing: '0.29px',
-    lineHeight: '10px',
+    lineHeight: '15px',
     textAlign: 'left',
-    marginTop:'0',
-    marginBottom: '0'
+    paddingTop:'0',
+    paddingBottom: '0'
   },
   currencyChevron: {
     fontSize: '0.8rem',
-    marginLeft: '10px',
-    marginBottom: '3px',
-    color: '#343537',
-  },
-  paddlock: {
-    color: '#637381',
-    fontSize: '13px',
-    fontWeight: 600,
-    lineHeight: '11px',
-    textAlign: 'right',
-    marginRight: '10px'
-  },
-  ssl: {
-    marginLeft: '20px'
+    paddingBottom: '3px',
+    color: '#FFFFFF',
   }
 }
 
 const ModuloCompra = props => {
 
-  const [isGetLoading, getData] = useGetHttpRequest('https://ripio.com/api/v1/rates/', []);
+  const [isGetLoading, getData] = useGetHttpRequest('/btcvalue', []);
   const [loginModal, setLoginModal] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
   const [arsQty, setArsQty] = useState('');
-  const user = useContext(UserProvider.context);
+  const user = useContext(UserProvider.context);  
 
-  const btcValue = getData ? getData.rates.ARS_BUY : []
+  let btcValue = []
+
+
+
+  if (getData) {
+    let bittexValue = getData.body.attributes.ask;
+    btcValue = (bittexValue*0.0225) + bittexValue;
+  }
+
 
   const arsValueFormat = btcValue.toLocaleString(undefined, {maximumFractionDigits:2});
   const btcQty = parseFloat(arsQty/btcValue).toFixed(8);
@@ -156,30 +151,24 @@ const ModuloCompra = props => {
   }
 
   return (
-    <Grid item xs={12} md={6} style={{
-      position: 'relative'
-    }}>
-      <div className="square" style={{
-        background: '#9DACB9'
-      }}/>
-      <Card className="card-container" style={{
-        position: 'relative',
-        zIndex: 1
-      }}>
-        <Typography className="modulo-compra-title" style={style.moduloCompraTitle}>Comprá tus Bitcoins</Typography>
-        <Typography className="modulo-compra-subtitle" style={style.moduloCompraSubtitle}>Ingresa la cantidad de pesos que queres cambiar.</Typography>
+    <div>
+      <Card className="card-container">
+        <div style={{ background: '#312D5C', paddingTop: '20px'}}>
+        <Typography style={style.moduloCompraTitle}>Comprá tus Bitcoins</Typography>
+        <Typography style={style.moduloCompraSubtitle}>Ingresa la cantidad de pesos que queres cambiar.</Typography>
+        </div>
         <form onSubmit={handleSubmit}>
+          <div style={{ background: '#312D5C', paddingBottom: '20px', paddingRight:'15px'}}>
           <Grid container>
-            <Grid item xs={6} container>
-              <Grid item xs={4}>
-                <img src={arsLogo} alt="argentina"/>
-              </Grid>
+
+            <Grid item xs={5} container>
               <Grid item xs={8} style={style.currencyBox}>
                 <Typography className="money" style={style.currencyTitle}>ARS<Icon className="money-icon fas fa-chevron-down" style={style.currencyChevron}/></Typography>
                 <Typography className="money-subtitle" style={style.currencySubtitle}>Pesos Argentinos</Typography>
               </Grid>
             </Grid>
-            <Grid item xs={6} className="money-input">
+
+            <Grid item xs={7} className="money-input">
               <TextField
                 id="formatted-numberformat-input"
                 placeholder={arsValueFormat.toString(2)}
@@ -194,21 +183,19 @@ const ModuloCompra = props => {
                 // }}
               />
             </Grid>
+
           </Grid>
 
           <div className="line-2"/>
 
           <Grid container>
-            <Grid item xs={6} container>
-              <Grid item xs={4}>
-                <img src={bitcoinLogo} alt="argentina"/>
-              </Grid>
+            <Grid item xs={5} container>
               <Grid item xs={8} style={style.currencyBox}>
                 <Typography className="money" style={style.currencyTitle}>BTC<Icon className="money-icon fas fa-chevron-down" style={style.currencyChevron}/></Typography>
                 <Typography className="money-subtitle" style={style.currencySubtitle}>Bitcoin</Typography>
               </Grid>
             </Grid>
-            <Grid item xs={6} className="money-input">
+            <Grid item xs={7} className="money-input">
               <TextField
                 disabled={true}
                 id="money-input-bitcoin"
@@ -225,8 +212,9 @@ const ModuloCompra = props => {
               />
             </Grid>
           </Grid>
+          </div>
           <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={6}>
+            <Grid item xs={9}>
               <Button
                 type="submit"
                 disabled={(!arsQty)}
@@ -235,28 +223,16 @@ const ModuloCompra = props => {
                 color="primary"
                 style={style.button}
               >
-                Comprar
+                <img src={bitcoinLogo} alt="bitcoinLogo" style={{marginRight: '20px'}}/>
+                Comprar Bitcoins
               </Button>
             </Grid>
           </Grid>
         </form>
-        <Grid container className="security-section">
-          <Grid item xs={6}>
-            <Typography className="paddlock" style={style.paddlock}>
-              <img src={padlock} alt="padlock"/>
-              Módulo Seguro
-            </Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography className="ssl" style={style.ssl}>
-              <img src={ssl} alt="ssl"/>
-            </Typography>
-          </Grid>
-        </Grid>
       </Card>
       <LoginModal open={loginModal} close={handleSubmit} arsQty={arsQty}/>
       <SuccessModal open={successModal} close={handleClose} arsQty={arsQty}/>
-     </Grid>
+    </div>
   );
 };
 

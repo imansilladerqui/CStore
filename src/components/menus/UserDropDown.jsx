@@ -28,7 +28,7 @@ const StyledMenu = withStyles({
 const StyledMenuItem = withStyles(theme => ({
     root: {
         "&:focus": {
-            backgroundColor: "var(--primary-red)",
+            backgroundColor: "#312D5C",
             "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
                 color: theme.palette.common.white,
             }
@@ -44,13 +44,13 @@ const UserDropDown = (props) => {
     const handleClose = () => setAnchorEl(null);
 
     return (
-        <div style={{ float: "right" }}>
+        <div style={{ float: "right", height: '100%' }}>
             <IconButton
                 href=""
-                style={{ color: "white", padding: "13px 12px" }}
+                style={{ color: "white", padding: "13px 12px", height: '100%' }}
                 onClick={handleClick}
             >
-                <Typography>{ !_.isEmpty(loggedUser) ? loggedUser.displayName : 'Registrate'}</Typography>
+                <Typography>{ !_.isEmpty(loggedUser) ? loggedUser.displayName : 'Registro'}</Typography>
             </IconButton>
 
             <StyledMenu

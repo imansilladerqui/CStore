@@ -1,17 +1,18 @@
 const auth = require('./Components/auth/strategies');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const express = require('express');
 const passport = require('passport');
 const router = require('./Network/routes');
 const session = require('express-session')
-const SETUP = require('./config');
+const SETUP = require('../config');
+const cors = require('cors');
 
 auth(passport);
 
 const app = express();
 
 app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -30,7 +31,7 @@ app.use(express.static('build'));
 router(app);
 
 
-const PORT = process.env.PORT || SETUP.CONFIG.port;
+const PORT = SETUP.CONFIG.port;
 app.listen(PORT);
 
 
