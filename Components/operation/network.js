@@ -1,6 +1,6 @@
 
 const express = require('express');
-const response = require('../../network/response');
+const response = require('../../Network/response');
 const controller = require('./controller');
 const Router = express.Router();
 const SETUP = require('../../config');

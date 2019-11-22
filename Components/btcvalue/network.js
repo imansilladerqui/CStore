@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const response = require('../../network/response');
+const response = require('../../Network/response');
 const request = require('request-promise');
 
 Router.get('/', (req, res) => {
