@@ -6,6 +6,7 @@ const router = require('./Network/routes');
 const session = require('express-session')
 const SETUP = require('./config');
 const cors = require('cors');
+const path = require("path");
 
 auth(passport);
 
@@ -13,6 +14,7 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, "src/build")))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
