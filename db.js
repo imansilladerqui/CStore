@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize('cryptostore', 'root', '', {
-    host: 'localhost',
+const db = new Sequelize('cryptostore', 'paisanoscreando', 'LaClaveSecreta', {
+    host: 'paisanoscreando.cskgygedfvbd.sa-east-1.rds.amazonaws.com',
+    port: '3306',
     dialect: 'mysql',
     logging: false
 });

@@ -4,7 +4,7 @@ const express = require('express');
 const passport = require('passport');
 const router = require('./Network/routes');
 const session = require('express-session')
-const SETUP = require('../config');
+const SETUP = require('./config');
 const cors = require('cors');
 
 auth(passport);

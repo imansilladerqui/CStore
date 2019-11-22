@@ -1,4 +1,4 @@
-const SETUP = require('../../../config');
+const SETUP = require('../../config');
 // const chalk = require('chalk');
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const AmazonStrategy = require('passport-amazon').Strategy;
