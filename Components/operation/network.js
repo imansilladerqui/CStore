@@ -5,17 +5,18 @@ const controller = require('./controller');
 const Router = express.Router();
 const SETUP = require('../../config');
 const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.mailgun_api_key, domain: SETUP.CONFIG.mailgun_domain});
-// const mail = require('./operationsuccess.html');''
+const mail = require('./operationsuccess.js');
 
 
 Router.post('/', (req, res) => {
     controller.addOperation(req.body.operationType, req.body.btcValue, req.body.btcQty, req.body.arsQty, req.body.userId)
     .then(data => {
+        console.log(mail);
         let clientData = {
             from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
             to: globalUser.emails[0].value,
             subject: 'Nos estaremos contactando',
-            text: 'lalalalalal'
+            html: mail
         };
 
         let sellerData = {
