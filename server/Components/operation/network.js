@@ -5,13 +5,15 @@ const controller = require('./controller');
 const Router = express.Router();
 const SETUP = require('../../config');
 const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.mailgun_api_key, domain: SETUP.CONFIG.mailgun_domain});
-const mail = require('./operationsuccess.js');
+const fs = require('fs')
+const path = require('path')
+const mail = fs.readFileSync(path.resolve(__dirname, 'operationsuccess.html'), 'utf8')
 
 
 Router.post('/', (req, res) => {
+    let lala = res.sendFile('./operationsuccess.html', { root: __dirname });
     controller.addOperation(req.body.operationType, req.body.btcValue, req.body.btcQty, req.body.arsQty, req.body.userId)
     .then(data => {
-        console.log(mail);
         let clientData = {
             from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
             to: globalUser.emails[0].value,
@@ -19,20 +21,20 @@ Router.post('/', (req, res) => {
             html: mail
         };
 
-        let sellerData = {
-            from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
-            to: 'imansilladerqui@hotmail.com',
-            subject: 'Nueva venta',
-            text: `usuarioId: ${req.body.userId}, Nombre: ${globalUser.displayName}, Valor del BTC: ${req.body.btcValue}, Cantidad de pesos: ${req.body.arsQty}, BTC solicitados: ${req.body.btcQty}, Tipo de operacion: ${req.body.operationType}`
-        };
+        // let sellerData = {
+        //     from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
+        //     to: 'imansilladerqui@hotmail.com',
+        //     subject: 'Nueva venta',
+        //     text: `usuarioId: ${req.body.userId}, Nombre: ${globalUser.displayName}, Valor del BTC: ${req.body.btcValue}, Cantidad de pesos: ${req.body.arsQty}, BTC solicitados: ${req.body.btcQty}, Tipo de operacion: ${req.body.operationType}`
+        // };
         mailgun.messages().send(clientData, function (error, body) {
             console.log(body);
             console.log(error);
         });
-        mailgun.messages().send(sellerData, function (error, body) {
-            console.log(body);
-            console.log(error);
-        });
+        // mailgun.messages().send(sellerData, function (error, body) {
+        //     console.log(body);
+        //     console.log(error);
+        // });
         response.success(req, res, data, 201);
     })
     .catch(err => {
