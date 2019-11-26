@@ -3,15 +3,14 @@ const express = require('express');
 const response = require('../../Network/response');
 const controller = require('./controller');
 const Router = express.Router();
-const SETUP = require('../../config');
+const SETUP = require('../../../config');
 const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.mailgun_api_key, domain: SETUP.CONFIG.mailgun_domain});
 const fs = require('fs')
 const path = require('path')
-const mail = fs.readFileSync(path.resolve(__dirname, 'operationsuccess.html'), 'utf8')
+const mail = fs.readFileSync(path.resolve(__dirname, 'operationsuccessclient.html'), 'utf8')
 
 
 Router.post('/', (req, res) => {
-    let lala = res.sendFile('./operationsuccess.html', { root: __dirname });
     controller.addOperation(req.body.operationType, req.body.btcValue, req.body.btcQty, req.body.arsQty, req.body.userId)
     .then(data => {
         let clientData = {
