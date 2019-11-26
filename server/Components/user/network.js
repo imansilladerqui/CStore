@@ -5,11 +5,10 @@ const User = require('../auth/model');
 const _ = require('lodash');
 
 Router.get('/', (req, res) => {
-    if(!_.isEmpty(globalUser)) {
-        return Promise.resolve(User.findOne({ where: {email: globalUser.emails[0].value}, raw: true,})
+    if(!_.isEmpty(req.user)) {
+        return Promise.resolve(User.findOne({ where: {email: req.user.profile.emails[0].value}, raw: true})
         .then(result => {
-            globalUser.userId = result.id;
-            return res.send(globalUser);
+            return res.send(result);
         }));
     }
 })

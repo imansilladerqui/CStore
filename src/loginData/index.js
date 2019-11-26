@@ -35,7 +35,7 @@ export const data = [
     href: "auth/google",
     alt: "google-icon",
     color: "#CB4024",
-    txt: "Login with Google"
+    txt: "Registrate con Google"
 },
 // {
 //     img: InstagramIcon,

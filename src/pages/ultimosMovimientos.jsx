@@ -8,9 +8,11 @@ const Profile = () => {
 
 
     const useratio = useContext(UserProvider.context);
-    const [isGetLoading, getData] = useGetHttpRequest(`/operation/${useratio.userId}`, [useratio]);
+    const [isGetLoading, getData] = useGetHttpRequest(`/operation/${useratio.id}`, [useratio]);
 
     let render;
+
+    console.log(getData);
 
     if(!_.isEmpty(getData)) {
         render = getData.body.map((data)=> {

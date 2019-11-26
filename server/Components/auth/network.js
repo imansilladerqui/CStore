@@ -1,8 +1,12 @@
 
 const express = require('express');
 const passport = require('passport');
-const Router = express.Router()
-
+const Router = express.Router();
+const SETUP = require('../../../config');
+const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.mailgun_api_key, domain: SETUP.CONFIG.mailgun_domain});
+const fs = require('fs');
+const path = require('path');
+const mail = fs.readFileSync(path.resolve(__dirname, 'successregister.html'), 'utf8');
 // Router.get("/facebook", passport.authenticate("facebook"));
 // Router.get("/facebook/callback", passport.authenticate("facebook"),
 //     (req, res) => {
@@ -31,6 +35,17 @@ Router.get("/google", passport.authenticate("google", {
 }));
 Router.get("/google/callback", passport.authenticate("google"),
     (req, res) => {
+        res.cookie('cookie', req.session.cookie);
+        res.cookie('user', req.session.passport.user);
+        let clientData = {
+            from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
+            to: req.session.passport.user.profile.emails[0].value,
+            subject: 'Te logueaste en CryptoStore',
+            html: mail
+        };
+        mailgun.messages().send(clientData, function (error, body) {
+            console.log(error);
+        });
         res.redirect('/');
     });
 
@@ -56,7 +71,9 @@ Router.get("/google/callback", passport.authenticate("google"),
 //     });
 
 Router.get("/logout", (req, res) => {
-    globalUser = {};
+    res.clearCookie('cookie');
+    res.clearCookie('user');
+    req.logout();
     res.redirect('/');
 });
 

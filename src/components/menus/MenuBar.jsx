@@ -2,14 +2,14 @@ import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import UserDropDown from './UserDropDown';
 import UserProvider from '../../contexts/UserProvider';
-import {data} from '../../data';
+import {data} from '../../loginData';
 import _ from 'lodash';
 import PassportLogo from '../../res/passport-1.svg';
 import logo from '../../res/logo.svg';
 
 const MenuBar = () => {
     const userData = useContext(UserProvider.context);
-    const loginType = !_.isEmpty(userData) ? _.find(data, d => d.name === userData.provider) : {};
+    const loginType = !_.isEmpty(userData) ? _.find(data, d => d.name === 'google') : {};
 
     return (
         <div className='menu-bar'>
@@ -21,11 +21,11 @@ const MenuBar = () => {
             </Link>
             {
                 !_.isEmpty(userData) &&
-                <div className='btn menu-btn noHover' title={`${loginType.name} data`} style={{ float: 'right', paddingTop: 0, paddingBottom: 0, position: 'relative', top: '50%', transform: 'translateY(-50%)' }}>
+                <div className='btn menu-btn noHover' title={`${userData.name} data`} style={{ float: 'right', paddingTop: 0, paddingBottom: 0, position: 'relative', top: '50%', transform: 'translateY(-50%)' }}>
                     <div className='app-icon-container'>
                         <img
                             className='btn-icon'
-                            src={userData.photos[0].value}
+                            src={userData.imageUrl}
                             alt={loginType.alt}
                         />
                     </div>

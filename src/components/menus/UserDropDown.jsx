@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import {data} from '../../loginData';
 import React, {useState} from "react";
 import {withStyles} from "@material-ui/core/styles";
 import {IconButton, ListItemText, Menu, MenuItem, Typography} from '@material-ui/core';
@@ -43,6 +44,8 @@ const UserDropDown = (props) => {
     const handleClick = event => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
 
+    const loginType = _.isEmpty(loggedUser) ? _.find(data, d => d.name === 'google') : {};
+
     return (
         <div style={{ float: "right", height: '100%' }}>
             <IconButton
@@ -50,7 +53,7 @@ const UserDropDown = (props) => {
                 style={{ color: "white", padding: "13px 12px", height: '100%' }}
                 onClick={handleClick}
             >
-                <Typography>{ !_.isEmpty(loggedUser) ? loggedUser.displayName : 'Registro'}</Typography>
+                <Typography>{ !_.isEmpty(loggedUser) ? loggedUser.name : 'Registro'}</Typography>
             </IconButton>
 
             <StyledMenu
@@ -61,13 +64,13 @@ const UserDropDown = (props) => {
                 {
                     _.isEmpty(loggedUser) &&
                     <StyledMenuItem onClick={() => history.push("/")}>
-                        <ListItemText primary="Registrate con Google" onClick={()=>window.location.href="/auth/google"}/>
+                        <ListItemText primary={loginType.txt} onClick={()=>window.location.href=loginType.href}/>
                     </StyledMenuItem>                    
                 }
                 {
                     !_.isEmpty(loggedUser) &&
-                    <StyledMenuItem onClick={() => history.push("/profile")}>
-                        <ListItemText primary="Perfil" />
+                    <StyledMenuItem onClick={() => history.push("/ultimosmovimientos")}>
+                        <ListItemText primary="Ultimos Movimientos" />
                     </StyledMenuItem>
                 }
                 {

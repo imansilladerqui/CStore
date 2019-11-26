@@ -10,9 +10,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const passport = require('passport');
 const authController = require('./controller');
 const UserDB = require('./model');
-const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.mailgun_api_key, domain: SETUP.CONFIG.domain});
-
-global.globalUser = {};
 
 module.exports = (passport) => {
 
@@ -76,7 +73,6 @@ module.exports = (passport) => {
                     authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.id);
                 }
             })
-            globalUser = {...profile};
             return cb(null, {
                 profile: profile,
                 token: accessToken

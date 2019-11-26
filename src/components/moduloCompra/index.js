@@ -145,7 +145,7 @@ const ModuloCompra = props => {
         btcValue: btcValue,
         btcQty: btcQty,
         arsQty: arsQty,
-        userId: user.userId
+        userId: user.id
       }, '?success=true');
     };
   }
