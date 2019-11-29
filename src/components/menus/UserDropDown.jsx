@@ -44,7 +44,7 @@ const UserDropDown = (props) => {
     const handleClick = event => setAnchorEl(event.currentTarget);
     const handleClose = () => setAnchorEl(null);
 
-    const loginType = _.isEmpty(loggedUser) ? _.find(data, d => d.name === 'google') : {};
+    const loginType = _.isEmpty(loggedUser) ? _.find(data, loggedUser => data.name === loggedUser.source) : {};
 
     return (
         <div style={{ float: "right", height: '100%' }}>

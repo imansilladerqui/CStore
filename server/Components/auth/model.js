@@ -21,9 +21,12 @@ module.exports = db.define("users", {
     imageUrl: {
         type: Sequelize.STRING(250)
     },
-    googleId: {
+    source: {
         type: Sequelize.STRING(250),
-        allowNull: false,
-        unique: true
-    }
+        allowNull: false
+    },
+    sourceId: {
+        type: Sequelize.STRING(250),
+        allowNull: false
+    },
 });

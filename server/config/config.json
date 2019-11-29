@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
+    "username": "paisanoscreando",
+    "password": "LaClaveSecreta",
     "database": "cryptostore",
-    "host": "127.0.0.1",
+    "host": "paisanoscreando.cskgygedfvbd.sa-east-1.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
@@ -15,10 +16,11 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "dhmcontrol",
-    "password": "suKA14teni",
+    "username": "paisanoscreando",
+    "password": "LaClaveSecreta",
     "database": "cryptostore",
-    "host": "127.0.0.1:3306",
+    "host": "paisanoscreando.cskgygedfvbd.sa-east-1.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql",
     "operatorsAliases": false
   }

@@ -68,9 +68,9 @@ module.exports = (passport) => {
         callbackURL: '/auth/google/callback'
     },
         (accessToken, refreshToken, profile, cb) => {
-            UserDB.findOne({ where: {googleId: profile.id} }).then((user) => {
+            UserDB.findOne({ where: {sourceId: profile.id} }).then((user) => {
                 if(!user) {
-                    authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.id);
+                    authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, 'google', profile.id);
                 }
             })
             return cb(null, {

@@ -12,8 +12,6 @@ const Profile = () => {
 
     let render;
 
-    console.log(getData);
-
     if(!_.isEmpty(getData)) {
         render = getData.body.map((data)=> {
             return (
@@ -27,6 +25,8 @@ const Profile = () => {
                 </ul>
             );
         })
+    } else {
+        render = "No tienes operaciones realizadas aun."
     }
 
     return (

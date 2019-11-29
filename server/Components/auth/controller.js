@@ -1,6 +1,6 @@
 const store = require('./store');
 
-function addUser(name, email, imageUrl, googleId) {
+function addUser(name, email, imageUrl, source, sourceId) {
     if (!name) {
         return Promise.reject('Invalid Name');
     }
@@ -9,7 +9,8 @@ function addUser(name, email, imageUrl, googleId) {
         name: name,
         email: email,
         imageUrl: imageUrl,
-        googleId: googleId
+        source: source,
+        sourceId: sourceId
     }
     
     return store.add(user);

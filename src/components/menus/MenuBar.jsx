@@ -9,7 +9,7 @@ import logo from '../../res/logo.svg';
 
 const MenuBar = () => {
     const userData = useContext(UserProvider.context);
-    const loginType = !_.isEmpty(userData) ? _.find(data, d => d.name === 'google') : {};
+    const loginType = !_.isEmpty(userData) ? _.find(data, userData => data.name === userData.source) : {};
 
     return (
         <div className='menu-bar'>
