@@ -31,7 +31,7 @@ app.use(express.static(__dirname));
 
 //will serve index.html for every page refresh.
 app.use('*',(req,res)=>{
-    res.sendFile(path.resolve('./public/index.html')) 
+    res.sendFile(path.resolve('./build/index.html')) 
 })
 
 router(app);
