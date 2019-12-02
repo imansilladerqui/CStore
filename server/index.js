@@ -27,12 +27,15 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname));
 
-//will serve index.html for every page refresh.
-app.use('*',(req,res)=>{
-    res.sendFile(path.resolve('./build/index.html')) 
-})
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('../build'));
+}
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
 
 router(app);
 
