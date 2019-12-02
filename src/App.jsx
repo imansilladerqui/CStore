@@ -11,8 +11,8 @@ const App = () => {
         <Router history={history}>
             <UserProvider>
                 <Route path="/" exact component={Home}/>
-                <Route path="/ultimosMovimientos" component={ultimosMovimientos}/>
-                <Route path="/pizarra" component={pizarra}/>
+                <Route path="/ultimosMovimientos" exact component={ultimosMovimientos}/>
+                <Route path="/pizarra" exact component={pizarra}/>
             </UserProvider>
         </Router>
     );
