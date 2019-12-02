@@ -14,8 +14,8 @@ const App = () => {
             <UserProvider>
                 <Route path="/" exact component={Home}/>
                 <Route path="/ultimosMovimientos" component={ultimosMovimientos}/>
+                <Route path="/pizarra" component={pizarra}/>
             </UserProvider>
-            <Route path="/pizarra" component={pizarra}/>
         </Router>
     );
 };
