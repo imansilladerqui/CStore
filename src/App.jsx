@@ -1,6 +1,6 @@
 import history from './history';
 import Home from './pages/Home';
-import MenuBar from './components/menus/MenuBar';
+import pizarra from './pages/pizarra';
 import ultimosMovimientos from './pages/ultimosMovimientos';
 import React from 'react';
 import {Router, Route} from 'react-router-dom';
@@ -12,10 +12,10 @@ const App = () => {
     return (
         <Router history={history}>
             <UserProvider>
-                <Route path="/" component={MenuBar} />
                 <Route path="/" exact component={Home}/>
                 <Route path="/ultimosMovimientos" component={ultimosMovimientos}/>
             </UserProvider>
+            <Route path="/pizarra" component={pizarra}/>
         </Router>
     );
 };

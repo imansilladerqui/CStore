@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {Grid, Hidden, Typography} from '@material-ui/core';
+import MenuBar from '../components/menus/MenuBar';
 import ModuloCompra from '../components/moduloCompra';
 import UserProvider from '../contexts/UserProvider';
 import homeImg from '../res/home.png';
@@ -28,6 +29,7 @@ const Home = (props) => {
     const userData = useContext(UserProvider.context);
     return (
         <div>
+            <MenuBar/>
             <Grid container className="homepage backgroundHome">
                 <Grid item xs={12} lg={6} container justify="center" direction="column" alignItems="center" style={{paddingLeft: '5%', paddingRight: '5%', marginTop: '4%'}}>
                     <Typography style={style.title}>

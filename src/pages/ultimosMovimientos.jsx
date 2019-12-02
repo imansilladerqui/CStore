@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, {useContext} from "react";
 import {useGetHttpRequest} from '../contexts/hooks/getHttpRequest';
+import MenuBar from '../components/menus/MenuBar';
 import UserProvider from "../contexts/UserProvider";
 
 const Profile = () => {
@@ -31,6 +32,7 @@ const Profile = () => {
 
     return (
         <div>
+            <MenuBar/>
             Mi historial de compra
             {render}
         </div>

@@ -84,8 +84,6 @@ const ModuloCompra = props => {
 
   let btcValue = []
 
-
-
   if (getData) {
     let bittexValue = getData.body.attributes.ask;
     btcValue = (bittexValue*0.0225) + bittexValue;
