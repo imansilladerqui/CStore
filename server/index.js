@@ -28,12 +28,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../build'));
-}
+app.use(express.static(path.join(__dirname, '../build')));
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '../build', 'index.html'));
+// PATH CONFIGURATION TO RESPOND TO A REQUEST TO STATIC ROUTE REQUEST BY SERVING index.html
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 

@@ -50,7 +50,7 @@ const UserDropDown = (props) => {
         <div style={{ float: "right", height: '100%' }}>
             <IconButton
                 href=""
-                style={{ color: "white", padding: "13px 12px", height: '100%' }}
+                style={{ color: "white", padding: "0", height: '100%' }}
                 onClick={handleClick}
             >
                 <Typography>{ !_.isEmpty(loggedUser) ? loggedUser.name : 'Registro'}</Typography>
