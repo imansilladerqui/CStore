@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '../public'))
 
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
-app.get('*', function (request, response){
+app.get('/', function (request, response){
   response.sendFile(path.resolve(__dirname, '../public', 'index.html'))
 })
 
