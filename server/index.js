@@ -1,6 +1,7 @@
 const auth = require('./Components/auth/strategies');
 const bodyParser = require('body-parser');
 const express = require('express');
+const path = require('path');
 const passport = require('passport');
 const router = require('./Network/routes');
 const session = require('express-session')
@@ -26,7 +27,12 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static('build'));
+app.use(express.static(__dirname));
+
+//will serve index.html for every page refresh.
+app.use('*',(req,res)=>{
+    res.sendFile(path.resolve('./public/index.html')) 
+})
 
 router(app);
 
