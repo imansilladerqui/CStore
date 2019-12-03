@@ -176,14 +176,14 @@ const Pizarra = () => {
 
             <div className="rotacion">
                 <div className="cabezal">
-                    <div className="logo"><img src={logo} className="logoH" /></div>
+                    <div className="logo"><img src={logo} alt='logocrypto' className="logoH" /></div>
                     <div className="colA">COMPRA</div>
                     <div className="colB">VENTA</div>
                 </div>
                 {
                     !_.isEmpty(getBigCoinValue.bitcoin) &&
                         <div id="mod1" className="moduloA">
-                            <div className="col1"><img src={btc} className="logoH" /></div>
+                            <div className="col1"><img src={btc} alt='bitcoin' className="logoH" /></div>
                             <div className="col2">BITCOIN</div>
                             <div className="col3">{getBigCoinValue.bitcoin.bid}</div>
                             <div className="col4">{getBigCoinValue.bitcoin.ask}</div>
@@ -192,7 +192,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getBigCoinValue.bitcoinCash) &&    
                     <div id="mod2" className="moduloB">
-                        <div className="col1"><img src={bch} className="logoH" /></div>
+                        <div className="col1"><img src={bch} alt='bitcoinCash' className="logoH" /></div>
                         <div className="col2">BITCOIN CASH</div>
                         <div className="col3">{getBigCoinValue.bitcoinCash.bid}</div>
                         <div className="col4">{getBigCoinValue.bitcoinCash.ask}</div>
@@ -201,7 +201,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getBigCoinValue.ethereum) &&
                     <div id="mod3" className="moduloA">
-                        <div className="col1"><img src={eth} className="logoH" /></div>
+                        <div className="col1"><img src={eth} alt='ethereum' className="logoH" /></div>
                         <div className="col2">ETHEREUM</div>
                         <div className="col3">{getBigCoinValue.ethereum.bid}</div>
                         <div className="col4">{getBigCoinValue.ethereum.ask}</div>
@@ -211,7 +211,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getBigCoinValue.litecoin) &&
                     <div id="mod4" className="moduloB">
-                        <div className="col1"><img src={ltc} className="logoH" /></div>
+                        <div className="col1"><img src={ltc} alt='litecoin' className="logoH" /></div>
                         <div className="col2">LITECOIN</div>
                         <div className="col3">{getBigCoinValue.litecoin.bid}</div>
                         <div className="col4">{getBigCoinValue.litecoin.ask}</div>
@@ -221,7 +221,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getBigCoinValue.ripple) &&
                     <div id="mod5" className="moduloA">
-                        <div className="col1"><img src={xrp} className="logoH" /></div>
+                        <div className="col1"><img src={xrp} alt='ripple' className="logoH" /></div>
                         <div className="col2">RIPPLE</div>
                         <div className="col3">{getBigCoinValue.ripple.bid}</div>
                         <div className="col4">{getBigCoinValue.ripple.ask}</div>
@@ -230,7 +230,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getLittleCoinValue.xmr) &&   
                     <div id="mod6" className="moduloB">
-                        <div className="col1"><img src={mnr} className="logoH" /></div>
+                        <div className="col1"><img src={mnr} alt='monero' className="logoH" /></div>
                         <div className="col2">MONERO</div>
                         <div className="col3">{getLittleCoinValue.xmr.bid}</div>
                         <div className="col4">{getLittleCoinValue.xmr.ask}</div>
@@ -239,7 +239,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getLittleCoinValue.zcash) &&   
                     <div id="mod7" className="moduloA">
-                        <div className="col1"><img src={zch} className="logoH" /></div>
+                        <div className="col1"><img src={zch} alt='zcash' className="logoH" /></div>
                         <div className="col2">ZCASH</div>
                         <div className="col3">{getLittleCoinValue.zcash.bid}</div>
                         <div className="col4">{getLittleCoinValue.zcash.ask}</div>
@@ -248,7 +248,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getLittleCoinValue.eos) &&   
                     <div id="mod8" className="moduloB">
-                        <div className="col1"><img src={eos} className="logoH" /></div>
+                        <div className="col1"><img src={eos} alt='eos' className="logoH" /></div>
                         <div className="col2">EOS</div>
                         <div className="col3">{getLittleCoinValue.eos.bid}</div>
                         <div className="col4">{getLittleCoinValue.eos.ask}</div>
@@ -257,7 +257,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getLittleCoinValue.dash) &&   
                     <div id="mod9" className="moduloA">
-                        <div className="col1"><img src={dsh} className="logoH" /></div>
+                        <div className="col1"><img src={dsh} alt='dash' className="logoH" /></div>
                         <div className="col2">DASH</div>
                         <div className="col3">{getLittleCoinValue.dash.bid}</div>
                         <div className="col4">{getLittleCoinValue.dash.ask}</div>
@@ -266,7 +266,7 @@ const Pizarra = () => {
                 {
                     !_.isEmpty(getLittleCoinValue.iota) &&   
                     <div id="mod10" className="moduloB">
-                        <div className="col1"><img src={omg} className="logoH" /></div>
+                        <div className="col1"><img src={omg} alt='iota' className="logoH" /></div>
                         <div className="col2">IOTA</div>
                         <div className="col3">{getLittleCoinValue.iota.bid}</div>
                         <div className="col4">{getLittleCoinValue.iota.ask}</div>
