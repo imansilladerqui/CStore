@@ -11,7 +11,7 @@ const App = () => {
         <UserProvider>
             <Router history={history}>
                 <Route path="/" exact component={Home}/>
-                <Route path="/ultimosMovimientos" component={ultimosMovimientos}/>
+                <Route path="/ultimosmovimientos" component={ultimosMovimientos}/>
                 <Route path="/pizarra" component={Pizarra}/>
             </Router>
         </UserProvider>
