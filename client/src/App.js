@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Pizarra from './pages/Pizarra';
 import ultimosmovimientos from './pages/ultimosmovimientos';
 import React from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {Router, Route} from "react-router-dom";
 import UserProvider from './contexts/UserProvider';
 
 const App = () => {
