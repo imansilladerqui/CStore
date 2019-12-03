@@ -34,7 +34,7 @@ app.use(passport.session());
 router(app);
 
 
-const PORT = SETUP.CONFIG.port;
+const PORT = process.env.PORT || SETUP.CONFIG.port;
 app.listen(PORT);
 
 

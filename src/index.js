@@ -4,6 +4,7 @@ import {createMuiTheme} from '@material-ui/core/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {ThemeProvider} from '@material-ui/styles';
+import registerServiceWorker from './registerServiceWorker';
 
 import "./style/index.css";
 
@@ -23,3 +24,4 @@ ReactDOM.render(
     </ThemeProvider>,
     document.getElementById('root')
 );
+registerServiceWorker();
