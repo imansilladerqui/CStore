@@ -8,13 +8,13 @@ import UserProvider from './contexts/UserProvider';
 
 const App = () => {
     return (
-        // <UserProvider>
+        <UserProvider>
             <Router history={history}>
                 <Route path="/" exact component={Home}/>
                 <Route path="/ultimosMovimientos" component={ultimosMovimientos}/>
                 <Route path="/pizarra" component={Pizarra}/>
             </Router>
-        // </UserProvider>
+        </UserProvider>
     );
 };
 
