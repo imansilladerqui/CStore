@@ -16,7 +16,10 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../build')))
+app.use(express.static(path.join(__dirname, '../public')))
+
+app.get('/', function (request, response){  
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html')) })
 
 app.use(session({
     secret: 'laksdnlasd',

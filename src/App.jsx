@@ -1,6 +1,6 @@
 import history from './history';
 import Home from './pages/Home';
-import pizarra from './pages/pizarra';
+import Pizarra from './pages/Pizarra';
 import ultimosMovimientos from './pages/ultimosMovimientos';
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -13,7 +13,7 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/ultimosMovimientos" exact component={ultimosMovimientos}/>
-                    <Route path="/pizarra" exact component={pizarra}/>
+                    <Route path="/pizarra" exact component={Pizarra}/>
                 </Switch>
             </Router>
         </UserProvider>
