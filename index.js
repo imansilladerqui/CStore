@@ -22,6 +22,12 @@ app.get('/pizarra', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 
 'index.html'));
 });
+
+app.get('/ultimosmovimientos', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 
+'index.html'));
+});
+
 app.use(session({
     secret: 'laksdnlasd',
     resave: false,
