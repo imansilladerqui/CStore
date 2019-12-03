@@ -13,6 +13,8 @@ const UserProvider = ({children}) => {
         })
     }, []);
 
+    console.log(user);
+
     return (
         <context.Provider value={user}>
             {children}
