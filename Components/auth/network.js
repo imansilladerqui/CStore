@@ -36,7 +36,6 @@ Router.get("/google", passport.authenticate("google", {
 Router.get("/google/callback", passport.authenticate("google"),
     (req, res) => {
         res.cookie('cookie', req.session.cookie);
-        // res.cookie('user', req.session.passport.user);
         let clientData = {
             from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
             to: req.session.passport.user.profile.emails[0].value,
@@ -72,7 +71,6 @@ Router.get("/google/callback", passport.authenticate("google"),
 
 Router.get("/logout", (req, res) => {
     res.clearCookie('cookie');
-    res.clearCookie('user');
     req.logout();
     res.redirect('/');
 });

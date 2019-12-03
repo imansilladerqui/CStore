@@ -1,11 +1,12 @@
 import React, {createContext, useState, useEffect} from 'react';
+import _ from 'lodash';
 
 const context = createContext(null);
 const UserProvider = ({children}) => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        if(document.cookie) {
+        if(_.isEmpty(user)) {
             fetch('/user')
             .then(res => res.json())
             .then(res => setUser(res))
@@ -14,8 +15,6 @@ const UserProvider = ({children}) => {
             })
         }
     }, []);
-
-    console.log(user);
 
     return (
         <context.Provider value={user}>
