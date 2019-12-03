@@ -5,15 +5,14 @@ const UserProvider = ({children}) => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        fetch('/user')
-        .then(res => res.json())
-        .then(res => {
-            console.log(res);
-            setUser(res)
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        if(document.cookie) {
+            fetch('/user')
+            .then(res => res.json())
+            .then(res => setUser(res))
+            .catch(err => {
+                console.log(err);
+            })
+        }
     }, []);
 
     console.log(user);
