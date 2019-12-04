@@ -43,7 +43,7 @@ Router.get("/google/callback", passport.authenticate("google"),
             html: mail
         };
         mailgun.messages().send(clientData, function (error, body) {
-            throw err;
+            throw error;
         });
         res.redirect('/');
     });
