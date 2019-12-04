@@ -1,14 +1,12 @@
 import React, {createContext, useState, useEffect} from 'react';
-import {useCookies} from 'react-cookie';
 import _ from 'lodash';
 
 const context = createContext(null);
 const UserProvider = ({children}) => {
     const [user, setUser] = useState({});
-    const [cookies, setCookie, removeCookie] = useCookies();
 
     useEffect(() => {
-        if(cookies.mail && _.isEmpty(user)) {
+        if(_.isEmpty(user)) {
             fetch('/user')
             .then(res => res.json())
             .then(data => setUser(data))
@@ -17,9 +15,8 @@ const UserProvider = ({children}) => {
             })
         }
     }, []);
-
     return (
-        <context.Provider value={user}>
+        <context.Provider value={user.body}>
             {children}
         </context.Provider>
     );

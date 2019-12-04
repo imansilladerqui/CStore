@@ -7,7 +7,6 @@ const router = require('./Network/routes');
 const session = require('express-session')
 const SETUP = require('./config');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 
 auth(passport);
 
@@ -38,7 +37,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cookieParser())
 
 router(app);
 

@@ -8,7 +8,6 @@ export const useGetHttpRequest = (url, dependencies) => {
     setIsGetLoading(true);
     fetch(url)
       .then(response => {
-        console.log(response);
         if (!response.ok) {
           throw new Error('Failed to fetch.');
         }
