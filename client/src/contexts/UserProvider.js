@@ -1,17 +1,19 @@
 import React, {createContext, useState, useEffect} from 'react';
+import {useCookies} from 'react-cookie';
 import _ from 'lodash';
 
 const context = createContext(null);
 const UserProvider = ({children}) => {
     const [user, setUser] = useState({});
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     useEffect(() => {
-        if(document.cookie.match(/^(.*;)?\s*cookie\s*=\s*[^;]+(.*)?$/)) {
+        if(cookies.mail && _.isEmpty(user)) {
             fetch('/user')
             .then(res => res.json())
-            .then(res => setUser(res))
+            .then(data => setUser(data))
             .catch(err => {
-                console.log(err);
+                throw err;
             })
         }
     }, []);

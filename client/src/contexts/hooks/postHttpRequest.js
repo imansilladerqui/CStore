@@ -13,6 +13,6 @@ export const PostHttpRequest = (method, url, data, target) => {
         return history.push(target)
       })
       .catch(err => {
-        console.log(err);
+        throw err;
       }); 
 };

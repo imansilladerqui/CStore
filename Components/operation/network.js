@@ -28,10 +28,10 @@ Router.post('/', (req, res) => {
             text: `Nombre: ${req.session.passport.user.profile.displayName}, Contacto: ${req.session.passport.user.profile.emails[0].value}, Valor del BTC: ${req.body.btcValue}, Cantidad de pesos: ${req.body.arsQty}, BTC solicitados: ${req.body.btcQty}, Tipo de operacion: ${req.body.operationType}`
         };
         mailgun.messages().send(clientData, function (error, body) {
-            console.log(error);
+            throw error;
         });
         mailgun.messages().send(sellerData, function (error, body) {
-            console.log(error);
+            throw error;
         });
         response.success(req, res, data, 201);
     })

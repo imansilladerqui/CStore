@@ -7,6 +7,7 @@ const router = require('./Network/routes');
 const session = require('express-session')
 const SETUP = require('./config');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 auth(passport);
 
@@ -33,11 +34,11 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { expires : new Date(Date.now() + 3600000) }
-    // cookie: { secure: true }
   }))
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser())
 
 router(app);
 

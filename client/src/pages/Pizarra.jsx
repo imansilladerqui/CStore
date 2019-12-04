@@ -59,7 +59,7 @@ const Pizarra = () => {
         });
     })
     .catch(err => {
-        console.log(err);
+        throw err;
     })}
 
     function littleCoinFunctions(url, coin) { 
@@ -82,7 +82,7 @@ const Pizarra = () => {
             });
         })
         .catch(err => {
-            console.log(err);
+            throw err;
         })}
 
     useEffect(() => {

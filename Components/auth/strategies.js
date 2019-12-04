@@ -70,7 +70,7 @@ module.exports = (passport) => {
         (accessToken, refreshToken, profile, cb) => {
             UserDB.findOne({ where: {sourceId: profile.id} }).then((user) => {
                 if(!user) {
-                    authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, 'google', profile.id);
+                    authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.provider, profile.id);
                 }
             })
             return cb(null, {

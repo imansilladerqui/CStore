@@ -18,7 +18,7 @@ export const useGetHttpRequest = (url, dependencies) => {
         setGetData(data);
       })
       .catch(err => {
-        console.log(err);
+        throw err;
         setIsGetLoading(false);
       });
   }, dependencies);
