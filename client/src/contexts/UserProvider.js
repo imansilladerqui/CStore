@@ -6,7 +6,7 @@ const UserProvider = ({children}) => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        if(_.isEmpty(user)) {
+        if(document.cookie.match(/^(.*;)?\s*cookie\s*=\s*[^;]+(.*)?$/)) {
             fetch('/user')
             .then(res => res.json())
             .then(res => setUser(res))
