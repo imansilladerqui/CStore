@@ -34,7 +34,11 @@ app.use(session({
   secret: 'key',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 15 * 60 * 1000 }
+  cookie: {
+    maxAge: 15 * 60 * 1000,
+    httpOnly: false,
+    secure: true,
+  }
 }))
 
 app.use(passport.initialize());
