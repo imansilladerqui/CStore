@@ -31,6 +31,7 @@ const mail = fs.readFileSync(path.resolve(__dirname, 'successregister.html'), 'u
 
 
 Router.get("/google", passport.authenticate("google", {
+    prompt: 'select_account',
     scope: ['profile', 'email']
 }));
 Router.get("/google/callback", passport.authenticate("google"),
@@ -69,8 +70,13 @@ Router.get("/google/callback", passport.authenticate("google"),
 //     });
 
 Router.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.session.destroy(function(){
+        req.session = null;
+
+        res.clearCookie('session', { path: '/' });
+        res.redirect('/');
+
+    });
 });
 
 module.exports = Router;

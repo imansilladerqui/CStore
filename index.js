@@ -7,6 +7,7 @@ const router = require('./Network/routes');
 const session = require('express-session')
 const SETUP = require('./config');
 const cors = require('cors');
+const uuid = require('uuid/v4');
 
 auth(passport);
 
@@ -29,11 +30,12 @@ app.get('/ultimosmovimientos', (req, res) => {
 });
 
 app.use(session({
-    secret: 'laksdnlasd',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { expires : new Date(Date.now() + 3600000) }
-  }))
+  name: 'session',
+  secret: 'key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 15 * 60 * 1000 }
+}))
 
 app.use(passport.initialize());
 app.use(passport.session());
