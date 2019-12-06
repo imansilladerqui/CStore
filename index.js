@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const router = require('./Network/routes');
-const session = require('express-session')
+const session = require('express-session');
 const SETUP = require('./config');
 const cors = require('cors');
 
@@ -29,22 +29,27 @@ app.get('/ultimosmovimientos', (req, res) => {
 'index.html'));
 });
 
-console.log(process.env.NODE_ENV);
+// app.use(session({
+//   name: 'session',
+//   secret: 'key',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     maxAge: 15 * 60 * 1000,
+//     // httpOnly: false,
+//     secure: false
+//     // secure: process.env.NODE_ENV == "production" ? true : false ,
+//   }
+// }))
 
-app.set('trust proxy', 1);
-
+var MemoryStore =session.MemoryStore;
 app.use(session({
-  name: 'session',
-  secret: 'key',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 15 * 60 * 1000,
-    // httpOnly: false,
-    secure: true
-    // secure: process.env.NODE_ENV == "production" ? true : false ,
-  }
-}))
+    name : 'app.sid',
+    secret: "1234567890QWERTY",
+    resave: true,
+    store: new MemoryStore(),
+    saveUninitialized: true
+}));
 
 app.use(passport.initialize());
 
