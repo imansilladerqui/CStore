@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get('/pizarra', (req, res) => {
+  console.log(process.env.NODE_ENV);
   res.sendFile(path.resolve(__dirname, 'client', 'build', 
 'index.html'));
 });
@@ -28,16 +29,19 @@ app.get('/ultimosmovimientos', (req, res) => {
 'index.html'));
 });
 
+console.log(process.env.NODE_ENV);
+
 app.use(session({
   name: 'session',
   secret: 'key',
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    maxAge: 15 * 60 * 1000,
-    // httpOnly: false,
-    // secure: true
-  }
+  // cookie: {
+  //   maxAge: 15 * 60 * 1000,
+  //   // httpOnly: false,
+  //   // secure: true
+  //   secure: process.env.NODE_ENV == "production" ? true : false ,
+  // }
 }))
 
 app.use(passport.initialize());
