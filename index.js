@@ -31,17 +31,19 @@ app.get('/ultimosmovimientos', (req, res) => {
 
 console.log(process.env.NODE_ENV);
 
+app.set('trust proxy', 1);
+
 app.use(session({
   name: 'session',
   secret: 'key',
   resave: false,
   saveUninitialized: false,
-  // cookie: {
-  //   maxAge: 15 * 60 * 1000,
-  //   // httpOnly: false,
-  //   // secure: true
-  //   secure: process.env.NODE_ENV == "production" ? true : false ,
-  // }
+  cookie: {
+    maxAge: 15 * 60 * 1000,
+    // httpOnly: false,
+    secure: true
+    // secure: process.env.NODE_ENV == "production" ? true : false ,
+  }
 }))
 
 app.use(passport.initialize());
