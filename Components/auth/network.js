@@ -36,15 +36,15 @@ Router.get("/google", passport.authenticate("google", {
 }));
 Router.get("/google/callback", passport.authenticate("google"),
     (req, res) => {
-        let clientData = {
-            from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
-            to: req.session.passport.user.profile.emails[0].value,
-            subject: 'Te logueaste en CryptoStore',
-            html: mail
-        };
-        mailgun.messages().send(clientData, function (error, body) {
-            console.log(error);
-        });
+        // let clientData = {
+        //     from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
+        //     to: req.session.passport.user.profile.emails[0].value,
+        //     subject: 'Te logueaste en CryptoStore',
+        //     html: mail
+        // };
+        // mailgun.messages().send(clientData, function (error, body) {
+        //     console.log(error);
+        // });
         res.redirect('/');
     });
 

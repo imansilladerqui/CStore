@@ -7,7 +7,6 @@ const router = require('./Network/routes');
 const session = require('express-session')
 const SETUP = require('./config');
 const cors = require('cors');
-const uuid = require('uuid/v4');
 
 auth(passport);
 
@@ -36,13 +35,12 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     maxAge: 15 * 60 * 1000,
-    httpOnly: false,
-    secure: true,
+    // httpOnly: false,
+    // secure: true
   }
 }))
 
 app.use(passport.initialize());
-app.use(passport.session());
 
 router(app);
 
