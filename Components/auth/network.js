@@ -71,13 +71,8 @@ Router.get("/google/callback", passport.authenticate("google"),
 //     });
 
 Router.get("/logout", (req, res) => {
-    req.session.destroy(function(){
-        req.session = null;
-
-        res.clearCookie('session.sid', { path: '/' });
-        res.redirect('/');
-
-    });
+    res.clearCookie('googleId');
+    res.redirect('/');
 });
 
 module.exports = Router;
