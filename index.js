@@ -29,29 +29,21 @@ app.get('/ultimosmovimientos', (req, res) => {
 'index.html'));
 });
 
-// app.use(session({
-//   name: 'session',
-//   secret: 'key',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: {
-//     maxAge: 15 * 60 * 1000,
-//     // httpOnly: false,
-//     secure: false
-//     // secure: process.env.NODE_ENV == "production" ? true : false ,
-//   }
-// }))
-
-var MemoryStore =session.MemoryStore;
 app.use(session({
-    name : 'app.sid',
-    secret: "1234567890QWERTY",
-    resave: true,
-    store: new MemoryStore(),
-    saveUninitialized: true
-}));
+  name: 'session',
+  secret: 'key',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 15 * 60 * 1000,
+    httpOnly: true,
+    secure: false
+    // secure: process.env.NODE_ENV == "production" ? true : false ,
+  }
+}))
 
 app.use(passport.initialize());
+app.use(passport.session());
 
 router(app);
 
