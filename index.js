@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const passport = require('passport');
 const router = require('./Network/routes');
-const session = require('express-session');
+var cookieParser = require('cookie-parser')
 const SETUP = require('./config');
 const cors = require('cors');
 
@@ -13,6 +13,8 @@ auth(passport);
 const app = express();
 
 app.use(cors());
+
+app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -29,21 +31,7 @@ app.get('/ultimosmovimientos', (req, res) => {
 'index.html'));
 });
 
-app.use(session({
-  name: 'session',
-  secret: 'key',
-  resave: true,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 15 * 60 * 1000,
-    httpOnly: true,
-    secure: false
-    // secure: process.env.NODE_ENV == "production" ? true : false ,
-  }
-}))
-
 app.use(passport.initialize());
-app.use(passport.session());
 
 router(app);
 

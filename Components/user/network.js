@@ -6,8 +6,8 @@ const User = require('../auth/model');
 const _ = require('lodash');
 
 Router.get('/', (req, res) => {
-    if (!_.isEmpty(req.session.passport)) {
-        return User.findOne({ where: {email: req.session.passport.user.profile.emails[0].value}, raw: true})
+    if (!_.isEmpty(req.cookies['googleId'])) {
+        return User.findOne({ where: {sourceId: req.cookies['googleId']}, raw: true})
         .then(data => {
             response.success(req, res, data, 200);
         })
