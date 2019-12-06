@@ -29,7 +29,6 @@ const TWITCH = {
 
 const CONFIG = {
     port: 5000,
-    host: 'http://localhost',
     publicRoute: '/',
     'mailgun_api_key': 'key-ebe6fab25949bc7633f714ae95f837ff',
     'mailgun_domain': 'mailing.cambioposadas.com.ar'

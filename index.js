@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get('/pizarra', (req, res) => {
-  console.log(process.env.NODE_ENV);
   res.sendFile(path.resolve(__dirname, 'client', 'build', 
 'index.html'));
 });
