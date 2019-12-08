@@ -34,26 +34,18 @@ Router.get("/google", passport.authenticate("google", {
     prompt: 'select_account',
     scope: ['profile', 'email']
 }));
-Router.get("/google/callback", passport.authenticate("google", 
-    {
-        failureRedirect: '/',
-        failureFlash: 'Failed Login!',
-        successRedirect: '/account',
-        successFlash: 'You are logged in!'
-
-    }),
+Router.get("/google/callback", passport.authenticate("google"),
     (req, res) => {
-        console.log(res);
         res.cookie('googleId', req.session.passport.user.profile.id, {maxAge: 900000});
-        let clientData = {
-            from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
-            to: req.session.passport.user.profile.emails[0].value,
-            subject: 'Te logueaste en CryptoStore',
-            html: mail
-        };
-        mailgun.messages().send(clientData, function (error, body) {
-            console.log(error);
-        });
+        // let clientData = {
+        //     from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
+        //     to: req.session.passport.user.profile.emails[0].value,
+        //     subject: 'Te logueaste en CryptoStore',
+        //     html: mail
+        // };
+        // mailgun.messages().send(clientData, function (error, body) {
+        //     console.log(error);
+        // });
         res.redirect('/');
     });
 
