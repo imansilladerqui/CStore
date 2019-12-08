@@ -65,9 +65,11 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
         clientID: SETUP.GOOGLE.clientID,
         clientSecret: SETUP.GOOGLE.clientSecret,
-        callbackURL: '/auth/google/callback'
+        callbackURL: '/auth/google/callback',
+        passReqToCallback: true
     },
         (accessToken, refreshToken, profile, cb) => {
+            console.log(profile);
             UserDB.findOne({ where: {sourceId: profile.id} }).then((user) => {
                 if(!user) {
                     authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.provider, profile.id);

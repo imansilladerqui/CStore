@@ -8,9 +8,9 @@ export const useGetHttpRequest = (url, dependencies) => {
     setIsGetLoading(true);
     fetch(url)
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch.');
-        }
+        // if (!response.ok) {
+        //   throw new Error('Failed to fetch.');
+        // }
         return response.json();
       })
       .then(data => {

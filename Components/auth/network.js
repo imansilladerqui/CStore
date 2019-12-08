@@ -34,8 +34,16 @@ Router.get("/google", passport.authenticate("google", {
     prompt: 'select_account',
     scope: ['profile', 'email']
 }));
-Router.get("/google/callback", passport.authenticate("google"),
+Router.get("/google/callback", passport.authenticate("google", 
+    {
+        failureRedirect: '/',
+        failureFlash: 'Failed Login!',
+        successRedirect: '/account',
+        successFlash: 'You are logged in!'
+
+    }),
     (req, res) => {
+        console.log(res);
         res.cookie('googleId', req.session.passport.user.profile.id, {maxAge: 900000});
         let clientData = {
             from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
