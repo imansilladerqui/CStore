@@ -24,8 +24,6 @@ app.use(passport.initialize());
 
 router(app);
 
-// app.use(express.static(path.join(__dirname, "client/build")));
-
 app.get('/pizarra', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 
 'index.html'));
