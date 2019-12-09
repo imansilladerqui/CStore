@@ -65,21 +65,19 @@ module.exports = (passport) => {
     passport.use(new GoogleStrategy({
         clientID: SETUP.GOOGLE.clientID,
         clientSecret: SETUP.GOOGLE.clientSecret,
-        callbackURL: 'https://localhost:3000/auth/google/callback'
+        callbackURL: '/auth/google/callback'
     },
         (accessToken, refreshToken, profile, cb) => {
-            if(profile) {
-                UserDB.findOne({ where: {sourceId: profile.id} }).then((user) => {
-                    if(!user) {
-                        console.log(profile);
-                        authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.provider, profile.id);
-                    }
-                })
-                return cb(null, {
-                    profile: profile,
-                    token: accessToken
-                });
-            }
+            UserDB.findOne({ where: {sourceId: profile.id} }).then((user) => {
+                if(!user) {
+                    console.log(profile);
+                    authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.provider, profile.id);
+                }
+            })
+            return cb(null, {
+                profile: profile,
+                token: accessToken
+            });
         }));
 
 
