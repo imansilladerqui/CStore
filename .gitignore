@@ -1,5 +1,6 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-package-lock.json
+/.idea
+node_modules
+commit.log
+.DS_Store
+client/build
+client/node_modules

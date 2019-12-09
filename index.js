@@ -7,6 +7,8 @@ const router = require('./Network/routes');
 var cookieParser = require('cookie-parser')
 const SETUP = require('./config');
 const cors = require('cors');
+const http = require('http');
+const https = require('https');
 
 auth(passport);
 
@@ -18,7 +20,11 @@ app.use(cookieParser());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(passport.initialize());
+
+router(app);
+
+// app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get('/pizarra', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 
@@ -29,11 +35,6 @@ app.get('/ultimosmovimientos', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 
 'index.html'));
 });
-
-app.use(passport.initialize());
-
-router(app);
-
 
 const PORT = process.env.PORT || SETUP.CONFIG.port;
 app.listen(PORT);
