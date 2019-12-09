@@ -46,7 +46,7 @@ Router.get("/google/callback", passport.authenticate("google"),
         // mailgun.messages().send(clientData, function (error, body) {
         //     console.log(error);
         // });
-        res.redirect('/');
+        res.redirect('https://localhost:3000');
     });
 
 
