@@ -7,6 +7,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 // const SpotifyStrategy = require('passport-spotify').Strategy;
 // const TwitchStrategy = require('passport-twitch.js').Strategy;
 // const passport = require('passport');
+const SETUP = require('../../config');
 const authController = require('./controller');
 const UserDB = require('./model');
 
@@ -60,8 +61,8 @@ module.exports = (passport) => {
 
     // Google Strategy
     passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        clientID: SETUP.CONFIG.GOOGLE_CLIENT_ID,
+        clientSecret: SETUP.CONFIG.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback'
     },
         (accessToken, refreshToken, profile, cb) => {

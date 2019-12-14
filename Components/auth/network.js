@@ -2,7 +2,8 @@
 const express = require('express');
 const passport = require('passport');
 const Router = express.Router();
-const mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: process.env.MAILGUN_DOMAIN});
+const SETUP = require('../../config');
+const mailgun = require('mailgun-js')({apiKey: SETUP.CONFIG.MAILGUN_API_KEY, domain: SETUP.CONFIG.MAILGUN_DOMAIN});
 const fs = require('fs');
 const path = require('path');
 const mail = fs.readFileSync(path.resolve(__dirname, 'successregister.html'), 'utf8');

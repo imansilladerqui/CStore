@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const html = path.resolve('dist', 'index.html');
 const session = require('express-session');
+const SETUP = require('./config');
 
 auth(passport);
 
@@ -38,4 +39,4 @@ app.use(session({
 
 router(app);
 
-app.listen(process.env.NODE_PORT || 5000, () => console.log(`Listening on port ${process.env.NODE_PORT}!`));
+app.listen(SETUP.CONFIG.NODE_PORT || 5000, () => console.log(`Listening on port ${SETUP.CONFIG.NODE_PORT}!`));
