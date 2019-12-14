@@ -6,7 +6,7 @@ const passport = require('passport');
 const router = require('./Network/routes');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const html = path.resolve('client', 'public', 'index.html');
+const html = path.resolve('client', 'build', 'index.html');
 const session = require('express-session');
 const SETUP = require('./config');
 
