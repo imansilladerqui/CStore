@@ -6,7 +6,7 @@ const passport = require('passport');
 const router = require('./Network/routes');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const html = path.resolve('dist', 'index.html');
+const html = path.resolve('client', 'public', 'index.html');
 const session = require('express-session');
 const SETUP = require('./config');
 
@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static('dist'));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get('/pizarra', (req, res) => {
   res.sendFile(html);
