@@ -1,4 +1,3 @@
-const SETUP = require('../../config');
 // const chalk = require('chalk');
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const AmazonStrategy = require('passport-amazon').Strategy;
@@ -59,18 +58,15 @@ module.exports = (passport) => {
     //         return cb(null, profile);
     //     }));
 
-
-
     // Google Strategy
     passport.use(new GoogleStrategy({
-        clientID: SETUP.GOOGLE.clientID,
-        clientSecret: SETUP.GOOGLE.clientSecret,
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback'
     },
         (accessToken, refreshToken, profile, cb) => {
             UserDB.findOne({ where: {sourceId: profile.id} }).then((user) => {
                 if(!user) {
-                    console.log(profile);
                     authController.addUser(profile.displayName, profile.emails[0].value, profile.photos[0].value, profile.provider, profile.id);
                 }
             })

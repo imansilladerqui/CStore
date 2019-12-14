@@ -75,7 +75,7 @@ const UserDropDown = (props) => {
                 }
                 {
                     !_.isEmpty(loggedUser) &&
-                    <StyledMenuItem onClick={() => window.location.href="/auth/logout"}>
+                    <StyledMenuItem onClick={() => window.location.href="auth/logout"}>
                         <ListItemText primary="Cerrar Sesión" />
                     </StyledMenuItem>
                 }

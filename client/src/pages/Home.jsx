@@ -7,23 +7,23 @@ import homeImg from '../res/home.png';
 
 const style = {
     title: {
-      fontSize: '35px',
-      color: '#FFFFFF',
-      fontWeight: 600,
-      lineHeight: '45px',
-      textAlign: 'left',
-      marginBottom: '30px'
+        fontSize: '35px',
+        color: '#FFFFFF',
+        fontWeight: 600,
+        lineHeight: '45px',
+        textAlign: 'left',
+        marginBottom: '30px'
     },
     subTitle: {
-      color: '#FFFFFF',
-      fontSize: '15px',
-      fontWeight: 300,
-      lineHeight: '23px',
-      textAlign: 'left',
-      marginBottom: '30px',
-      marginTop: '0'
+        color: '#FFFFFF',
+        fontSize: '15px',
+        fontWeight: 300,
+        lineHeight: '23px',
+        textAlign: 'left',
+        marginBottom: '30px',
+        marginTop: '0'
     }
-  }
+}
 
 const Home = (props) => {
     const userData = useContext(UserProvider.context);

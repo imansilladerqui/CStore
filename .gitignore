@@ -1,6 +1,8 @@
 /.idea
 node_modules
-commit.log
-.DS_Store
-client/build
 client/node_modules
+client/build
+.vscode
+*.log
+yarn.lock
+.env
