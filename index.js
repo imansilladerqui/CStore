@@ -38,4 +38,4 @@ app.use(session({
 
 router(app);
 
-app.listen(process.env.NODE_PORT, () => console.log(`Listening on port ${process.env.NODE_PORT}!`));
+app.listen(process.env.NODE_PORT || 5000, () => console.log(`Listening on port ${process.env.NODE_PORT}!`));
