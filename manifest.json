@@ -1,0 +1,22 @@
+{
+    "name": "Cryptostore AMEXFIN",
+    "short_name": "Cryptostore",
+    "dir": "ltr",
+    "lang": "en-US",
+    "orientation": "landscape",
+    "start_url": "/",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "display": "standalone",
+    "description": "Cryptostore la nueva forma de adquirir tu cripto.",
+    "icons": [
+      {
+        "src": "./logo.png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "./logo.png",
+        "sizes": "512x512"
+      }
+    ]
+  }

@@ -53,8 +53,8 @@ const Pizarra = () => {
         setGetBigCoinValue(prevState => {
             return {...prevState, 
             [coin]: {
-                bid: parseFloat(coinValueBid+(coinValueBid*0.04)).toFixed(2),
-                ask: parseFloat(coinValueAsk+(coinValueAsk*0.04)).toFixed(2),
+                bid: parseFloat(coinValueBid+(coinValueBid*0.0225)).toFixed(2),
+                ask: parseFloat(coinValueAsk+(coinValueAsk*0.0225)).toFixed(2),
             }}
         });
     })
@@ -71,7 +71,7 @@ const Pizarra = () => {
             return response.json();
         })
         .then(data => {
-            let littleCoinValue = parseFloat(data.ticker.price*0.004) + parseFloat(data.ticker.price);
+            let littleCoinValue = parseFloat(data.ticker.price*0.0225) + parseFloat(data.ticker.price);
             setLittleCoinValue(prevState => {
                 return {...prevState, 
                     [coin]: {
