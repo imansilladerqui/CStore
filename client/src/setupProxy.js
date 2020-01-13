@@ -7,5 +7,6 @@ module.exports = function(app) {
     app.use(proxy('/clients/btcvalue', {target: 'http://localhost:5000'}));
     app.use(proxy('/operation', {target: 'http://localhost:5000'}));
     app.use(proxy('/user', {target: 'http://localhost:5000'}));
+    app.use(proxy('/update', {target: 'http://localhost:5000'}));
     app.use(proxy('/profile', {target: 'http://localhost:5000'}));
 };

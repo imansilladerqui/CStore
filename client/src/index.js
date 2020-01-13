@@ -1,24 +1,15 @@
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
-import {createMuiTheme} from '@material-ui/core/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {ThemeProvider} from '@material-ui/styles';
-import "./style/index.css";
-
-const theme = createMuiTheme({
-    typography: {
-      fontFamily: [
-        'Quicksand'
-      ]
-    }
-});
+import './assets/css/normalize.css';
+import './assets/css/webflow.css';
+import './assets/css/index.css';
+import './assets/css/custom.css';
 
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
     document.getElementById('root')
 );

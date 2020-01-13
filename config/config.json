@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "paisanoscreando",
+    "password": "LaClaveSecreta",
+    "database": "cryptostore",
+    "host": "paisanoscreando.cskgygedfvbd.sa-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "paisanoscreando",
+    "password": "LaClaveSecreta",
+    "database": "cryptostore",
+    "host": "paisanoscreando.cskgygedfvbd.sa-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "paisanoscreando",
+    "password": "LaClaveSecreta",
+    "database": "cryptostore",
+    "host": "paisanoscreando.cskgygedfvbd.sa-east-1.rds.amazonaws.com",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  }
+}

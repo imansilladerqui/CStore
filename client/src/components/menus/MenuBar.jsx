@@ -1,49 +1,64 @@
 import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import UserDropDown from './UserDropDown';
+import {Link as RouterLink} from 'react-router-dom';
 import UserProvider from '../../contexts/UserProvider';
-import {data} from '../../loginData';
 import _ from 'lodash';
-import PassportLogo from '../../res/passport-1.svg';
-import logo from '../../res/logo.svg';
+import {Link as ScrollLink} from 'react-scroll';
 
-const MenuBar = () => {
+
+// IMAGES
+
+import logo from '../../assets/images/logo-Crypto-store-1.svg'
+import menuWhite from '../../assets/images/menuwhite.svg'
+
+const MenuBar = (props) => {
     const userData = useContext(UserProvider.context);
-    const loginType = !_.isEmpty(userData) ? _.find(data, userData => data.name === userData.source) : {};
 
     return (
-        <div className='menu-bar'>
-            <Link className='btn menu-btn noHover logobox' to='/' title='Home'>
-                <img
-                    src={logo}
-                    alt='logo'
-                />
-            </Link>
-            {
-                !_.isEmpty(userData) &&
-                <div className='btn menu-btn noHover' title={`${userData.name} data`} style={{ float: 'right', paddingTop: 0, paddingBottom: 0, position: 'relative', top: '50%', transform: 'translateY(-50%)' }}>
-                    <div className='app-icon-container'>
-                        <img
-                            className='btn-icon'
-                            src={userData.imageUrl}
-                            alt={loginType.alt}
-                        />
-                    </div>
+        <div data-collapse="medium" data-animation="default" data-duration="400" className="navbar w-nav">
+            <div className="container-2 w-container">
+                <RouterLink to='/' className="brand w-nav-brand">
+                    <img src={logo} alt="" className="image"/>
+                </RouterLink>
+                <nav role="navigation" className="nav-menu-2 w-nav-menu">
+                    {
+                    !_.isEmpty(userData) &&
+                        <RouterLink to='/ultimosmovimientos' className={`nav-link-4 w-nav-link ${((props.location &&props.location.pathname.indexOf('ultimosmovimientos') !== -1) ? 'w--current' : '')}`}>Movimientos</RouterLink>
+                    }
+                    <RouterLink to='/faq/bitcoin' className={`nav-link-4 w-nav-link ${((props.location &&props.location.pathname.includes('faq')) ? 'w--current' : '')}`}>Ayuda</RouterLink>
+                    <ScrollLink
+                        to="contacto" 
+                        spy={true} 
+                        smooth={true} 
+                        duration={500} 
+                        className='nav-link-4 w-nav-link'
+                    >Contacto</ScrollLink>
+                    {
+                    _.isEmpty(userData) &&
+                        <RouterLink to='/login' className="nav-link-4 top w-nav-link">
+                            <span className="text-span-5">Login</span>
+                        </RouterLink>
+                    }
+                    {
+                    // _.isEmpty(userData) &&
+                    //     <Link to='/signup' className="nav-link-4 top w-nav-link">
+                    //         <span className="text-span-6">Registro</span>
+                    //     </Link>
+                    }
+                    {
+                    !_.isEmpty(userData) &&
+                        <RouterLink to='/' className='nav-link-4 w-nav-link'>{userData.name}</RouterLink>
+                    }
+                    {
+                    !_.isEmpty(userData) &&
+                        <a href='/auth/logout' className="nav-link-4 top w-nav-link">
+                            <span className="text-span-5">Cerrar sesión</span>
+                        </a>
+                    }
+                </nav>
+                <div className="menu-button w-nav-button">
+                    <img src={menuWhite} width="10" alt="" className="image-51"/>
                 </div>
-            }
-
-            {
-                _.isEmpty(userData) &&
-                <div className='btn menu-btn noHover' title='Home' style={{ float: 'right', paddingTop: 0, paddingBottom: 0, position: 'relative', top: '50%', transform: 'translateY(-50%)' }}>
-                    <img
-                        src={PassportLogo}
-                        alt='passport.js logo'
-                    />
-                </div>
-            }
-
-            <UserDropDown loggedUser={userData}/>
-
+            </div>
         </div>
     );
 };

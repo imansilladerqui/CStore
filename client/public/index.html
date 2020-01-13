@@ -4,14 +4,253 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="../../manifest.json" />
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&display=swap" rel="stylesheet">
     <link href='https://use.fontawesome.com/releases/v5.1.0/css/all.css' rel="stylesheet">
-    <link rel="shortcut icon" type="image/png/ico" href="./logo.png" />
+    <link rel="shortcut icon" type="image/png/ico" href="%PUBLIC_URL%/logo.png" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>CRYPTOSTORE AMEXFIN</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      /**
+       * ----------------------------------------------------------------------
+       * Webflow: Interactions 2.0: Init
+       */
+        var Webflow = Webflow || [];
+        Webflow.push(function() {
+        Webflow.require('ix2').init({
+            "events": {
+                "e-23": {
+                    "id": "e-23",
+                    "eventTypeId": "MOUSE_CLICK",
+                    "action": {
+                        "id": "",
+                        "actionTypeId": "GENERAL_START_ACTION",
+                        "config": {
+                            "delay": 0,
+                            "easing": "",
+                            "duration": 0,
+                            "actionListId": "a-10",
+                            "affectedElements": {},
+                            "playInReverse": false,
+                            "autoStopEventId": "e-24"
+                        }
+                    },
+                    "mediaQueries": ["main", "medium", "small", "tiny"],
+                    "target": {
+                        "selector": ".faq-question",
+                        "originalId": "5e04f5050b1ac53acbeb62a3|8db1fb83-7631-002b-b977-bfd36fc63395",
+                        "appliesTo": "CLASS"
+                    },
+                    "config": {
+                        "loop": false,
+                        "playInReverse": false,
+                        "scrollOffsetValue": null,
+                        "scrollOffsetUnit": null,
+                        "delay": null,
+                        "direction": null,
+                        "effectIn": null
+                    },
+                    "createdOn": 1543891273196
+                },
+                "e-24": {
+                    "id": "e-24",
+                    "eventTypeId": "MOUSE_SECOND_CLICK",
+                    "action": {
+                        "id": "",
+                        "actionTypeId": "GENERAL_START_ACTION",
+                        "config": {
+                            "delay": 0,
+                            "easing": "",
+                            "duration": 0,
+                            "actionListId": "a-11",
+                            "affectedElements": {},
+                            "playInReverse": false,
+                            "autoStopEventId": "e-23"
+                        }
+                    },
+                    "mediaQueries": ["main", "medium", "small", "tiny"],
+                    "target": {
+                        "selector": ".faq-question",
+                        "originalId": "5e04f5050b1ac53acbeb62a3|8db1fb83-7631-002b-b977-bfd36fc63395",
+                        "appliesTo": "CLASS"
+                    },
+                    "config": {
+                        "loop": false,
+                        "playInReverse": false,
+                        "scrollOffsetValue": null,
+                        "scrollOffsetUnit": null,
+                        "delay": null,
+                        "direction": null,
+                        "effectIn": null
+                    },
+                    "createdOn": 1543891273198
+                }
+            },
+            "actionLists": {
+                "a-10": {
+                    "id": "a-10",
+                    "title": "FAQ Open",
+                    "actionItemGroups": [{
+                        "actionItems": [{
+                            "id": "a-10-n",
+                            "actionTypeId": "STYLE_SIZE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "",
+                                "duration": 500,
+                                "locked": false,
+                                "target": {
+                                    "useEventTarget": "SIBLINGS",
+                                    "selector": ".faq-answer",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f61"]
+                                },
+                                "heightValue": 0,
+                                "widthUnit": "PX",
+                                "heightUnit": "PX"
+                            }
+                        }]
+                    }, {
+                        "actionItems": [{
+                            "id": "a-10-n-2",
+                            "actionTypeId": "STYLE_SIZE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "easeInOut",
+                                "duration": 300,
+                                "locked": false,
+                                "target": {
+                                    "useEventTarget": "SIBLINGS",
+                                    "selector": ".faq-answer",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f61"]
+                                },
+                                "heightValue": 0,
+                                "widthUnit": "PX",
+                                "heightUnit": "AUTO"
+                            }
+                        }, {
+                            "id": "a-10-n-3",
+                            "actionTypeId": "STYLE_SIZE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "",
+                                "duration": 500,
+                                "locked": false,
+                                "target": {
+                                    "useEventTarget": "CHILDREN",
+                                    "selector": ".faq-plus-l",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f59"]
+                                },
+                                "heightValue": 0,
+                                "widthUnit": "PX",
+                                "heightUnit": "%"
+                            }
+                        }, {
+                            "id": "a-10-n-4",
+                            "actionTypeId": "TRANSFORM_ROTATE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "inOutBack",
+                                "duration": 500,
+                                "target": {
+                                    "useEventTarget": "CHILDREN",
+                                    "selector": ".faq-plus-wrap",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f57"]
+                                },
+                                "zValue": 180,
+                                "xUnit": "DEG",
+                                "yUnit": "DEG",
+                                "zUnit": "DEG"
+                            }
+                        }]
+                    }],
+                    "createdOn": 1543891276079,
+                    "useFirstGroupAsInitialState": true
+                },
+                "a-11": {
+                    "id": "a-11",
+                    "title": "FAQ Close",
+                    "actionItemGroups": [{
+                        "actionItems": [{
+                            "id": "a-11-n",
+                            "actionTypeId": "STYLE_SIZE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "easeInOut",
+                                "duration": 300,
+                                "locked": false,
+                                "target": {
+                                    "useEventTarget": "SIBLINGS",
+                                    "selector": ".faq-answer",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f61"]
+                                },
+                                "heightValue": 0,
+                                "widthUnit": "PX",
+                                "heightUnit": "PX"
+                            }
+                        }, {
+                            "id": "a-11-n-2",
+                            "actionTypeId": "STYLE_SIZE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "",
+                                "duration": 300,
+                                "locked": false,
+                                "target": {
+                                    "useEventTarget": "CHILDREN",
+                                    "selector": ".faq-plus-l",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f59"]
+                                },
+                                "heightValue": 100,
+                                "widthUnit": "PX",
+                                "heightUnit": "%"
+                            }
+                        }, {
+                            "id": "a-11-n-3",
+                            "actionTypeId": "TRANSFORM_ROTATE",
+                            "config": {
+                                "delay": 0,
+                                "easing": "inOutBack",
+                                "duration": 500,
+                                "target": {
+                                    "useEventTarget": "CHILDREN",
+                                    "selector": ".faq-plus-wrap",
+                                    "selectorGuids": ["0c60ce2b-1152-c83b-19de-dae157a74f57"]
+                                },
+                                "zValue": 0,
+                                "xUnit": "DEG",
+                                "yUnit": "DEG",
+                                "zUnit": "DEG"
+                            }
+                        }]
+                    }],
+                    "createdOn": 1543891276079,
+                    "useFirstGroupAsInitialState": false
+                }
+            },
+            "site": {
+                "mediaQueries": [{
+                    "key": "main",
+                    "min": 992,
+                    "max": 10000
+                }, {
+                    "key": "medium",
+                    "min": 768,
+                    "max": 991
+                }, {
+                    "key": "small",
+                    "min": 480,
+                    "max": 767
+                }, {
+                    "key": "tiny",
+                    "min": 0,
+                    "max": 479
+                }]
+            }
+        });
+    });
+    </script>
   </body>
 </html>

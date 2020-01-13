@@ -29,4 +29,7 @@ module.exports = db.define("users", {
         type: Sequelize.STRING(250),
         allowNull: false
     },
+    tel: {
+        type: Sequelize.STRING(250)
+    },
 });

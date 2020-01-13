@@ -19,4 +19,19 @@ Router.get('/', (req, res) => {
     }
 });
 
+Router.put('/update', (req, res) => {
+    User.findOne({ where: {sourceId: req.cookies['googleId']} })
+    .then((user) => {
+        return user.update(
+            {tel: req.body.tel}
+        )
+    })
+    .then(() => {
+        response.success(req, res, 'User info updated', 200);
+    })
+    .catch(err => {
+        response.error(req, res, {}, 500, err);
+    });
+});
+
 module.exports = Router;

@@ -30,12 +30,13 @@ app.get('/ultimosmovimientos', (req, res) => {
   res.sendFile(html);
 });
 
-app.use(passport.initialize());
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 router(app);
 

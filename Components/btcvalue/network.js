@@ -5,7 +5,7 @@ const request = require('request-promise');
 
 Router.get('/', (req, res) => {
     request({
-        "method":"GET", 
+        "method":"GET",
         "uri": "https://bitex.la/api/tickers",
         "json": true,
     })

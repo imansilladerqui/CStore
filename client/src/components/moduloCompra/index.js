@@ -1,99 +1,26 @@
 // LIBRARIES
 import _ from 'lodash';
-import {Button, Card, Grid, Icon, TextField, Typography} from '@material-ui/core';
-import history from "../../history";
-import LoginModal from '../modal/LoginModal';
-import queryString from 'query-string';
-import SuccessModal from '../modal/SuccessModal';
-import NumberFormat from 'react-number-format';
 import React, {useContext, useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import UserProvider from "../../contexts/UserProvider";
 
 // IMAGES
 
-import bitcoinLogo from '../../res/bitcoinLogo.svg'
+import triangulo from '../../assets/images/triangulo.svg';
 
 //FETCH HOOK
 
 import {useGetHttpRequest} from '../../contexts/hooks/getHttpRequest';
-import {PostHttpRequest} from '../../contexts/hooks/postHttpRequest';
-
-
-const style = {
-  button: {
-    marginTop: 20,
-    background: '#FFFFFF',
-    color: '#312D5C',
-    borderRadius: 0
-  },
-  input: {textAlign: "right"},
-  moduloCompraTitle: {
-    fontSize: '25px',
-    color: '#FFFFFF',
-    fontWeight: 600,
-    lineHeight: '17px',
-    textAlign: 'center',
-    paddingBottom: '15px'
-  },
-  moduloCompraSubtitle: {
-    color: '#FFFFFF',
-    fontSize: '15px',
-    fontWeight: 300,
-    lineHeight: '15px',
-    textAlign: 'center',
-    paddingBottom: '30px',
-    paddingTop: '0'
-  },
-  currencyBox: {
-    paddingLeft: '10px'
-  },
-  currencyTitle: {
-    color: '#FFFFFF',
-    fontSize: '30px',
-    fontWeight: 400,
-    letterSpacing: '0.71px',
-    lineHeight: '24px',
-    textAlign: 'left',
-    paddingTop:'0',
-    paddingBottom: '10px'
-  },
-  currencySubtitle: {
-    color: '#FFFFFF',
-    fontSize: '15px',
-    fontWeight: 300,
-    letterSpacing: '0.29px',
-    lineHeight: '15px',
-    textAlign: 'left',
-    paddingTop:'0',
-    paddingBottom: '0'
-  },
-  currencyChevron: {
-    fontSize: '0.8rem',
-    paddingBottom: '3px',
-    color: '#FFFFFF',
-  }
-}
 
 const ModuloCompra = props => {
 
   const [isGetLoading, getData] = useGetHttpRequest('/btcvalue', []);
-  const [loginModal, setLoginModal] = useState(false);
-  const [successModal, setSuccessModal] = useState(false);
   const [arsQty, setArsQty] = useState('');
-  const user = useContext(UserProvider.context);  
+  const user = useContext(UserProvider.context);
+  const comisionCstore = 2.25;
 
-  let btcValue = []
-
-  if (getData) {
-    let bittexValue = getData.body.attributes.ask;
-    btcValue = (bittexValue*0.0225) + bittexValue;
-  }
-
-
-  const arsValueFormat = btcValue.toLocaleString(undefined, {maximumFractionDigits:2});
-  const btcQty = parseFloat(arsQty/btcValue).toFixed(8);
-
-  const parseUrl = queryString.parse(props.location.search);
+  let bittexValue = (getData) ? getData.body.attributes.ask : []
+  let btcQty = parseFloat(arsQty/bittexValue).toFixed(6);
 
   useEffect(() => {
     if(localStorage.getItem('arsQty')) {
@@ -102,134 +29,90 @@ const ModuloCompra = props => {
     }
   }, [])
 
-
-  useEffect(() => {
-    if(parseUrl.success) {
-      setSuccessModal( s => !s)
+  const arsFormat = (param, arsQty) => {
+    if (arsQty) {
+      return parseFloat(arsQty/param).toFixed(8);
     }
-  }, [parseUrl.success])
-
-  // const NumberFormatCustom = props => {
-  //   const {inputRef, onChange, ...other} = props;
-  //   return (
-  //     <NumberFormat
-  //       {...other}
-  //       getInputRef={inputRef}
-  //       onValueChange={values => {
-  //         onChange({
-  //           target: {
-  //             value: values.value,
-  //           }
-  //         });
-  //       }}
-  //       thousandSeparator
-  //       isNumericString
-  //     />
-  //   );
-  // }
-
-  const handleClose = () => {
-    setSuccessModal(!successModal)
-    return history.push('/');
+    return param.toLocaleString(undefined, {maximumFractionDigits:2});
   }
 
   const handleSubmit = e => {
     e.preventDefault();
     if(_.isEmpty(user)) {
-      setLoginModal(!loginModal)
+      localStorage.setItem('arsQty', arsQty);
+      props.history.push('/login')
     } else {
-      PostHttpRequest('POST', '/operation', {
+      props.history.push('/resumencompra', {
         operationType: 'buy',
-        btcValue: btcValue,
+        btcValue: bittexValue,
         btcQty: btcQty,
         arsQty: arsQty,
+        comisionCstore: comisionCstore,
         userId: user.id
-      }, '?success=true');
+      });
     };
   }
 
   return (
-    <div>
-      <Card className="card-container">
-        <div style={{ background: '#312D5C', paddingTop: '20px'}}>
-        <Typography style={style.moduloCompraTitle}>Comprá tus Bitcoins</Typography>
-        <Typography style={style.moduloCompraSubtitle}>Ingresa la cantidad de pesos que queres cambiar.</Typography>
+    <div className="section-2-home herosection-home">
+        <div className="div-block-53"></div>
+        <div className="mycontain-home containhero-home">
+            <div className="w-layout-grid grid-home">
+                <div className="div-block-6-home">
+                    <h1 className="heading-2-home">Invertí en la nueva economía digital</h1>
+                    <div className="text-block-2-home">Te asesoramos para comprar y vender criptomonedas de manera rápida, fácil y segura</div>
+                    <Link to='/' className="button-3-home w-button">Por qué invertir en bitcoin?</Link>
+                    <div className="text-block-3-home">Sin fees ni cargos extra</div>
+                    <div className="text-block-4-home">Pagás en efectivo o transferencia</div>
+                    <div className="text-block-5-home">100% Seguro</div>
+                </div>
+                <div id="w-node-8cc9ab6cb193-5889e3ba" className="div-block-48-home">
+                    <div className="form-block-2-home w-form">
+                        <form id="email-form" name="email-form" data-name="Email Form" className="form-2-home w-clearfix">
+                            <div className={`div-block-45-home ${(arsQty)? 'ars-sign' : ''}`}>
+                                <input
+                                  type="number"
+                                  className="text-field-home w-input"
+                                  maxLength={256}
+                                  name="Moneda-2"
+                                  data-name="Moneda 2"
+                                  placeholder="Ingresá el monto"
+                                  id="Moneda-2"
+                                  value={arsQty}
+                                  onChange={(e)=>{setArsQty(e.target.value)}}
+                                />
+                                <div className="select-field-2-home">ARS</div>
+                            </div>
+                            <div className="div-block-home">
+                                <div className="text-block-6-home">Comisión: <span className="text-span-2">{` ${comisionCstore}%`}</span></div>
+                                <div className="div-block-47">
+                                    <p className="paragraph-5">Solo cobramos una comisión fija, no cobramos cargos extra ni otros fees</p>
+                                    <img src={triangulo} width="26" alt="" className="image-46"/>
+                                </div>
+                                <div className="text-block-7-home">Cotización:
+                                  <span className="text-span-2"> $ {arsFormat(bittexValue)}</span>
+                                </div>
+                            </div>
+                            <div className="div-block-4 btc-sign">
+                                <input
+                                  type="number"
+                                  className="text-field-2-home w-input"
+                                  maxLength={256}
+                                  name="Criptomoneda-2"
+                                  data-name="Criptomoneda 2"
+                                  placeholder={(arsQty) ? arsFormat(bittexValue, arsQty) : 1}
+                                  id="Criptomoneda-2"
+                                  disabled
+                                />
+                                <div className="select-field-2-home">BTC</div>
+                            </div>
+                            <input type="submit" disabled={(!arsQty)} value="Iniciar solicitud" className="submit-button-3-home w-button" onClick={(e)=>{handleSubmit(e)}}/>
+                        </form>
+                        <div className="text-block-9-home">* Una vez completados todos los datos, te vamos a contactar para concretar la transacción, no vas a tener que ingresar datos de tu tarjeta en la plataforma.</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div style={{ background: '#312D5C', paddingBottom: '20px', paddingRight:'15px'}}>
-          <Grid container>
-
-            <Grid item xs={5} container>
-              <Grid item xs={8} style={style.currencyBox}>
-                <Typography className="money" style={style.currencyTitle}>ARS<Icon className="money-icon fas fa-chevron-down" style={style.currencyChevron}/></Typography>
-                <Typography className="money-subtitle" style={style.currencySubtitle}>Pesos Argentinos</Typography>
-              </Grid>
-            </Grid>
-
-            <Grid item xs={7} className="money-input">
-              <TextField
-                id="formatted-numberformat-input"
-                placeholder={arsValueFormat.toString(2)}
-                label="Cuánto tenes que pagar"
-                InputLabelProps={{
-                  shrink: true
-                }}
-                value={arsQty}
-                onChange={(e)=>{setArsQty(e.target.value)}}
-                // InputProps={{
-                //   inputComponent: NumberFormatCustom
-                // }}
-              />
-            </Grid>
-
-          </Grid>
-
-          <div className="line-2"/>
-
-          <Grid container>
-            <Grid item xs={5} container>
-              <Grid item xs={8} style={style.currencyBox}>
-                <Typography className="money" style={style.currencyTitle}>BTC<Icon className="money-icon fas fa-chevron-down" style={style.currencyChevron}/></Typography>
-                <Typography className="money-subtitle" style={style.currencySubtitle}>Bitcoin</Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={7} className="money-input">
-              <TextField
-                disabled={true}
-                id="money-input-bitcoin"
-                label="Cuánto vas a comprar"
-                type="currency"
-                placeholder={(arsQty) ?  btcQty.toString(2) : '1'}
-                fullWidth
-                InputLabelProps={{
-                    shrink: true
-                }}
-                inputProps={{
-                  style: style.input
-                }}
-              />
-            </Grid>
-          </Grid>
-          </div>
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={9}>
-              <Button
-                type="submit"
-                disabled={(!arsQty)}
-                fullWidth
-                variant="contained"
-                color="primary"
-                style={style.button}
-              >
-                <img src={bitcoinLogo} alt="bitcoinLogo" style={{marginRight: '20px'}}/>
-                Comprar Bitcoins
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Card>
-      <LoginModal open={loginModal} close={handleSubmit} arsQty={arsQty}/>
-      <SuccessModal open={successModal} close={handleClose} arsQty={arsQty}/>
     </div>
   );
 };
