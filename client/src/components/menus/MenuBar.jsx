@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link as RouterLink} from 'react-router-dom';
 import UserProvider from '../../contexts/UserProvider';
 import _ from 'lodash';
 import {Link as ScrollLink} from 'react-scroll';
+
 
 
 // IMAGES
@@ -12,6 +13,11 @@ import menuWhite from '../../assets/images/menuwhite.svg'
 
 const MenuBar = (props) => {
     const userData = useContext(UserProvider.context);
+    const [openMenu, setOpenMenu] = useState(false);
+
+    const toggleClass = () => {
+        setOpenMenu(!openMenu)
+    }
 
     return (
         <div data-collapse="medium" data-animation="default" data-duration="400" className="navbar w-nav">
@@ -19,8 +25,12 @@ const MenuBar = (props) => {
                 <RouterLink to='/' className="brand w-nav-brand">
                     <img src={logo} alt="" className="image"/>
                 </RouterLink>
-                <nav role="navigation" className="nav-menu-2 w-nav-menu">
-                    {
+                
+                <nav 
+                role="navigation"
+                className={`nav-menu-2 w-nav-menu ${(openMenu)? 'w--nav-menu-open': ''}`}
+                >
+                {
                     !_.isEmpty(userData) &&
                         <RouterLink to='/ultimosmovimientos' className={`nav-link-4 w-nav-link ${((props.location &&props.location.pathname.indexOf('ultimosmovimientos') !== -1) ? 'w--current' : '')}`}>Movimientos</RouterLink>
                     }
@@ -55,7 +65,8 @@ const MenuBar = (props) => {
                         </a>
                     }
                 </nav>
-                <div className="menu-button w-nav-button">
+                
+                <div className="menu-button w-nav-button" onClick={toggleClass}>
                     <img src={menuWhite} width="10" alt="" className="image-51"/>
                 </div>
             </div>
