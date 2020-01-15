@@ -2307,7 +2307,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   max-height: none;
   max-width: none;
   margin: 0px auto;
