@@ -13,7 +13,7 @@ const Invertir = () => {
                 <div className="div-block-37">
                     <img src={declaracionImagen} sizes="(max-width: 479px) 90vw, 100vw" alt="" className="image-45"/>
                     <div className="div-block-38">
-                        <div className="div-block-39">Cripto Store me dió la
+                        <div className="div-block-39">CryptoStore me dió la
                             <br/>confianza y la ayuda que
                             <br/>necesitaba para empezar a ahorrar de forma inteligente
                             <br/>
