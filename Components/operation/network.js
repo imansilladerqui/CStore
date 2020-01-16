@@ -28,8 +28,6 @@ Router.post('/', (req, res) => {
             html: html
         };
 
-        console.log(req.body.user)
-
         let sellerData = {
             from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
             to: 'imansilladerqui@hotmail.com',

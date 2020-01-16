@@ -37,7 +37,6 @@ const TotalCompra = (props) => {
         PostHttpRequest('PUT', '/user/update', {
             tel: phoneValue
         });
-        console.log(state.user);
         localStorage.removeItem('state');
         return PostHttpRequest('POST', '/operation', {
             operationType: 'buy',
