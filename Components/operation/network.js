@@ -22,15 +22,16 @@ Router.post('/', (req, res) => {
             vars: ['arsQty', 'comisionCstore', 'btcQty']
         })
         let clientData = {
-            from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
+            from: 'Cryptostore <noreply@mailing.cambioposadas.com.ar>',
             to: req.body.user.email,
             subject: 'Nos estaremos contactando',
             html: html
         };
 
         let sellerData = {
-            from: 'Cambio Posadas <noreply@mailing.cambioposadas.com.ar>',
-            to: 'imansilladerqui@hotmail.com',
+            from: 'Cryptostore <noreply@mailing.cambioposadas.com.ar>',
+            to: 'ep@cryptostore.com.ar',
+            cc: 'so@cryptostore.com.ar',
             subject: 'Nueva venta',
             text: `Nombre: ${req.body.user.name}, Contacto: ${req.body.user.email}, Valor del BTC: ${req.body.btcValue}, Cantidad de pesos: ${req.body.arsQty}, BTC solicitados: ${req.body.btcQty}, Tipo de operacion: ${req.body.operationType}, telefono: ${req.body.userPhone}`
         };
